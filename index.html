@@ -1,134 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>月底生存大作戰</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10151b"><title>月底生存大作戰｜把喜歡的事存進未來</title>
 <style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; padding: 24px; font-family: system-ui, sans-serif;
-    color: #303047; background: linear-gradient(135deg, #fff0f3, #e9f8f5);
-  }
-  main {
-    max-width: 620px; margin: 30px auto; padding: 28px;
-    background: white; border-radius: 24px; box-shadow: 0 12px 36px #55446620;
-  }
-  .tag { color: #a04d78; font-weight: 700; }
-  h1 { margin: 8px 0; font-size: 30px; }
-  .subtitle { color: #777; line-height: 1.7; }
-  .stats { display: flex; gap: 12px; margin: 22px 0; }
-  .stat { flex: 1; padding: 14px; border-radius: 16px; background: #fff3f6; }
-  .stat small { display: block; color: #777; }
-  .stat strong { font-size: 21px; }
-  .bar { height: 12px; background: #eee; border-radius: 99px; overflow: hidden; }
-  #progress { height: 100%; width: 0; background: #e879a5; transition: .3s; }
-  #scene { margin-top: 24px; padding: 20px; border-radius: 18px; background: #f5f3ff; }
-  #emoji { font-size: 38px; }
-  #question { font-size: 21px; font-weight: 700; margin: 8px 0; }
-  #detail { color: #666; line-height: 1.6; }
-  button {
-    width: 100%; margin-top: 12px; padding: 15px; border: 0;
-    border-radius: 14px; background: #6554a4; color: white;
-    font-size: 16px; font-weight: 700; cursor: pointer;
-  }
-  button:hover { background: #51418e; }
-  #note { min-height: 28px; margin-top: 14px; color: #6554a4; font-weight: 600; }
-  .restart { background: #e879a5; }
-</style>
-</head>
-<body>
-<main>
-  <div class="tag">🎮 大學生理財闖關</div>
-  <h1>月底生存大作戰</h1>
-  <p class="subtitle">這個月有 18,000 元生活費，先扣掉基本開銷後，看看你能不能存下日本旅行基金！</p>
-
-  <div class="stats">
-    <div class="stat"><small>可自由運用</small><strong id="money">9,000</strong> 元</div>
-    <div class="stat"><small>旅行基金</small><strong id="saved">0</strong> 元</div>
-  </div>
-  <div class="bar"><div id="progress"></div></div>
-
-  <section id="scene">
-    <div id="emoji">🧋</div>
-    <div id="question"></div>
-    <div id="detail"></div>
-    <div id="choices"></div>
-    <div id="note"></div>
-  </section>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap');
+:root{--ink:#f4f1e9;--muted:#a7b0b8;--bg:#10151b;--panel:#192129;--line:#303b45;--lime:#d7ff72;--pink:#ff7c9b;--blue:#8edbff;--orange:#ffc66d}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 12% 0%,#26313b 0,transparent 38%),var(--bg);color:var(--ink);font-family:'Noto Sans TC',sans-serif;min-height:100vh}.wrap{max-width:980px;margin:auto;padding:24px 22px 60px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:50px}.brand{font-size:13px;letter-spacing:.12em;color:var(--lime);font-weight:800}.badge{border:1px solid var(--line);border-radius:99px;padding:8px 13px;color:var(--muted);font-size:12px}.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;margin-bottom:32px}.eyebrow{font:12px 'DM Mono',monospace;letter-spacing:.16em;color:var(--pink);text-transform:uppercase}.hero h1{font-size:clamp(38px,7vw,68px);line-height:1.12;letter-spacing:-.05em;margin:12px 0 18px}.hero h1 span{color:var(--lime)}.hero p{color:#c2c9cc;line-height:1.9;margin:0;max-width:550px}.hero-art{min-height:220px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(145deg,#202b34,#171e25);display:grid;place-items:center;position:relative;overflow:hidden}.hero-art:before,.hero-art:after{content:"";position:absolute;border:1px solid #46525b;border-radius:50%;width:230px;height:230px}.hero-art:after{width:170px;height:170px}.ticket{z-index:1;background:var(--lime);color:#182019;padding:20px 24px;border-radius:12px;transform:rotate(-8deg);box-shadow:10px 12px 0 #0e1318}.ticket b{font-size:21px;display:block}.ticket small{font:11px 'DM Mono';letter-spacing:.1em}.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}.stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 20px}.stat label{display:block;color:var(--muted);font-size:12px;margin-bottom:7px}.stat strong{font:500 clamp(24px,4vw,34px) 'DM Mono',monospace;letter-spacing:-.05em}.stat strong em{font:500 13px 'Noto Sans TC';font-style:normal;color:var(--muted)}.goal{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin-bottom:18px}.goal-head{display:flex;justify-content:space-between;gap:10px;font-size:13px}.goal-head span:last-child{color:var(--lime);font-family:'DM Mono'}.bar{height:8px;border-radius:9px;background:#303a42;margin-top:12px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--lime));border-radius:9px;transition:width .45s}.layout{display:grid;grid-template-columns:220px 1fr;gap:16px}.side,.scene{background:var(--panel);border:1px solid var(--line);border-radius:20px}.side{padding:20px;height:fit-content}.side h3{font-size:12px;color:var(--muted);font-weight:600;margin:0 0 16px}.steps{display:grid;gap:9px}.step{display:flex;gap:10px;align-items:center;color:#77838d;font-size:12px}.dot{width:23px;height:23px;border:1px solid #4a5660;border-radius:50%;display:grid;place-items:center;font:10px 'DM Mono';flex:none}.step.done{color:var(--lime)}.step.done .dot{background:var(--lime);border-color:var(--lime);color:#172019}.step.active{color:var(--ink)}.step.active .dot{border-color:var(--pink);color:var(--pink)}.scene{padding:clamp(22px,4vw,38px);min-height:420px}.scene-meta{display:flex;justify-content:space-between;color:var(--pink);font:12px 'DM Mono';letter-spacing:.08em}.scene h2{font-size:clamp(24px,4vw,34px);margin:24px 0 10px;line-height:1.35}.scene .desc{color:#bac2c7;line-height:1.8;margin:0 0 26px}.choices{display:grid;gap:10px}.choice{width:100%;background:#202a33;border:1px solid #3b4751;color:var(--ink);border-radius:13px;padding:15px 17px;display:flex;justify-content:space-between;gap:10px;align-items:center;text-align:left;font:600 14px 'Noto Sans TC';cursor:pointer;transition:.18s}.choice:hover{border-color:var(--lime);background:#26333a;transform:translateY(-1px)}.choice small{color:var(--muted);font-weight:500;white-space:nowrap}.choice small.good{color:var(--lime)}.choice small.cost{color:var(--orange)}.result{border-left:3px solid var(--lime);padding:12px 15px;margin-top:20px;color:#c6d0d0;background:#202b30;border-radius:0 10px 10px 0;line-height:1.7}.footer{display:flex;justify-content:space-between;align-items:center;margin-top:19px;color:var(--muted);font-size:12px}.btn{border:0;border-radius:10px;background:var(--lime);color:#172019;padding:12px 17px;font:800 13px 'Noto Sans TC';cursor:pointer}.btn:hover{filter:brightness(1.05)}.note{margin-top:25px;text-align:center;color:#71808a;font-size:11px;line-height:1.7}.end{text-align:center;padding:30px 5px}.end .emoji{font-size:55px}.end h2{font-size:34px;margin:12px}.end p{color:#bcc5c8;line-height:1.8;max-width:500px;margin:12px auto 23px}.hidden{display:none!important}@media(max-width:700px){.wrap{padding:18px 14px 42px}.top{margin-bottom:32px}.hero{grid-template-columns:1fr;gap:18px}.hero-art{min-height:145px}.layout{grid-template-columns:1fr}.side{padding:14px 16px}.steps{grid-template-columns:repeat(5,1fr);gap:5px}.step{flex-direction:column;gap:4px;text-align:center;font-size:10px}.scene{min-height:0}.choice{align-items:flex-start;flex-direction:column}.choice small{white-space:normal}.footer{align-items:flex-start}}
+</style></head>
+<body><main class="wrap">
+<header class="top"><div class="brand">✳ FINANCE QUEST / 01</div><div class="badge">互動理財小遊戲</div></header>
+<section class="hero"><div><div class="eyebrow">YOUR MONTH, YOUR CHOICES</div><h1>月底生存<br><span>大作戰</span></h1><p>月底還沒到，生活費已經開始倒數？用 10 個日常選擇，練習分配預算，替真正期待的事留一筆錢。這個月的目標：存下演唱會門票基金！</p></div><div class="hero-art"><div class="ticket"><small>LIVE SHOW · TICKET FUND</small><b>下一場，為喜歡而存 ✦</b></div></div></section>
+<section class="stats"><div class="stat"><label>本月可自由運用</label><strong id="money">9,000 <em>元</em></strong></div><div class="stat"><label>演唱會門票基金</label><strong id="saved">0 <em>元</em></strong></div></section>
+<section class="goal"><div class="goal-head"><span>🎟️ 門票基金目標</span><span><b id="goalnum">0</b> / 5,000 元</span></div><div class="bar"><i id="bar"></i></div></section>
+<section class="layout"><aside class="side"><h3>本月挑戰 · 10 個選擇</h3><div class="steps" id="steps"></div></aside><article class="scene" id="scene"></article></section>
+<p class="note">小提醒：這是模擬情境，選擇沒有絕對對錯；重要的是看見每個決定如何影響自己的目標。</p>
 </main>
-
 <script>
-const events = [
-  { emoji:"🧋", q:"朋友約你喝飲料聊天！", d:"今天有點累，買一杯飲料要 85 元。", options:[
-    ["買一杯犒賞自己",85], ["帶自己的水，省下來",0]
-  ]},
-  { emoji:"👕", q:"看到一件超喜歡的衣服！", d:"網路商店正在特價，這件衣服要 1,200 元。", options:[
-    ["立刻下單",1200], ["先收藏，想一天再決定",0]
-  ]},
-  { emoji:"🍜", q:"晚餐要怎麼解決？", d:"你可以吃平價餐點，也可以和朋友去吃火鍋。", options:[
-    ["平價晚餐，花 100 元",100], ["火鍋聚餐，花 450 元",450]
-  ]},
-  { emoji:"🎬", q:"朋友邀你週末出去玩！", d:"看電影加餐點大約要 500 元，也可以改成免費散步聊天。", options:[
-    ["去看電影，花 500 元",500], ["改約免費的活動",0]
-  ]},
-  { emoji:"🛍️", q:"逛街時看到喜歡的周邊！", d:"這個月預算還夠，但你也可以先替目標存一筆錢。", options:[
-    ["先存 500 元進演唱會基金",500,500], ["買小周邊，花 300 元",300]
-  ]},
-  { emoji:"🎤", q:"喜歡的歌手要開演唱會了！", d:"門票和周邊都很吸引人，你會怎麼分配這筆錢？", options:[
-    ["存 1,000 元進演唱會基金",1000,1000], ["買演唱會周邊，花 800 元",800]
-  ]}
+const events=[
+{icon:'🥤',title:'朋友揪你買飲料',desc:'下午讀書讀到一半，朋友傳來訊息：「珍奶買一送一，要不要？」',choices:[['買一杯犒賞自己',85,0,'偶爾享受也很重要，記得把它放進預算。'],['帶自己的水，省下來',0,0,'省下這筆小錢，累積起來也很有感。']]},
+{icon:'🛍️',title:'購物車裡的新品',desc:'喜歡的衣服正在特價，原價 1,200 元，今天下單最便宜。',choices:[['現在買下來',1200,0,'買之前先想想：它是需要，還是看到折扣才想要？'],['先放購物車，三天後再決定',0,0,'延遲購買能幫你確認是不是真的喜歡。']]},
+{icon:'🍜',title:'晚餐吃什麼？',desc:'今天有點累，外送平台跳出你最愛的餐點。',choices:[['點外送，花 250 元',250,0,'方便很值得，但外送費也別忘了算進去。'],['去學餐吃，花 100 元',100,0,'選擇平價餐點，還是能吃飽又顧好預算。']]},
+{icon:'🎬',title:'週末朋友約看電影',desc:'新片大家都在聊，電影票加爆米花約 500 元。',choices:[['一起看電影，花 500 元',500,0,'娛樂支出可以保留，重點是知道自己花了多少。'],['改成宿舍電影夜',0,0,'換個方式聚會，也能省下一筆。']]},
+{icon:'🎤',title:'看到演唱會售票公告',desc:'你最喜歡的歌手宣布開唱！門票預估要 5,000 元，現在基金還是 0 元。',choices:[['先存 500 元進門票基金',500,500,'好耶！這 500 元已經從可用金額移到門票基金。'],['先不存，等之後再說',0,0,'可以晚點再決定，但目標也會離你遠一點。']]},
+{icon:'☕',title:'報告趕工需要咖啡',desc:'小組報告今晚要完成，咖啡店推出 160 元特調。',choices:[['買咖啡提神，花 160 元',160,0,'提神之餘也留意頻繁的小額支出。'],['泡宿舍咖啡，花 30 元',30,0,'自己準備，省下的錢可以留給更重要的事。']]},
+{icon:'💸',title:'收到打工薪水',desc:'這週多了一筆 1,000 元薪水。你可以先把一部分安排好。',choices:[['存 1,000 元進門票基金',1000,1000,'先存再花，目標進度一下子往前很多！'],['存 500 元，留 500 元彈性',500,500,'兼顧目標和日常，這也是很棒的分配方式。'],['全部留著自由使用',0,0,'保留彈性也可以，記得衡量接下來的花費。']]},
+{icon:'🎁',title:'室友生日快到了',desc:'大家要一起送禮物，每人分攤 300 元。',choices:[['一起送禮，花 300 元',300,0,'在人際關係上花錢也有價值，量力而為就好。'],['寫卡片加手作小禮物',100,0,'心意不一定要很貴，控制預算一樣能表達祝福。']]},
+{icon:'👟',title:'常穿的鞋子壞了',desc:'鞋底快脫落，看到一雙 1,500 元的鞋正在特價。',choices:[['買耐穿的鞋，花 1,500 元',1500,0,'真正需要的支出，應該優先安排在預算裡。'],['修補舊鞋，花 300 元',300,0,'先修再穿一陣子，也能替自己保留更多選擇。']]},
+{icon:'🎟️',title:'售票前最後一次盤點',desc:'今晚就要開賣了！看看你存下多少門票基金，再做最後安排。',choices:[['再存 1,000 元進門票基金',1000,1000,'最後衝刺！把可用金額轉進門票基金。'],['保留生活費，不勉強存',0,0,'先照顧好必要生活，再為下一次演出慢慢準備。']]}
 ];
-let money = 9000, saved = 0, turn = 0;
-const moneyEl = document.querySelector("#money");
-const savedEl = document.querySelector("#saved");
-const questionEl = document.querySelector("#question");
-const detailEl = document.querySelector("#detail");
-const choicesEl = document.querySelector("#choices");
-const noteEl = document.querySelector("#note");
-
-function showEvent() {
-  if (turn >= events.length) return finish();
-  const e = events[turn];
-  document.querySelector("#emoji").textContent = e.emoji;
-  questionEl.textContent = `第 ${turn + 1} 關｜${e.q}`;
-  detailEl.textContent = e.d;
-  noteEl.textContent = "";
-  document.querySelector("#progress").style.width = `${turn / events.length * 100}%`;
-  choicesEl.innerHTML = "";
-  e.options.forEach(([label, cost, save]) => {
-    const b = document.createElement("button");
-    b.textContent = label;
-    b.onclick = () => {
-      money -= cost;
-      saved += save || 0;
-      moneyEl.textContent = money.toLocaleString();
-      savedEl.textContent = saved.toLocaleString();
-      noteEl.textContent = cost ? `這次花了 ${cost} 元。每個選擇都會影響月底剩下的錢！` : "做出選擇了！繼續看看下一關～";
-      turn++;
-      setTimeout(showEvent, 900);
-    };
-    choicesEl.appendChild(b);
-  });
-}
-
-function finish() {
-  document.querySelector("#progress").style.width = "100%";
-  questionEl.textContent = saved >= 1000 ? "任務完成！🎉" : "挑戰結束！✨";
-  detailEl.textContent = `你最後有 ${money.toLocaleString()} 元可運用，另外存下 ${saved.toLocaleString()} 元旅行基金。月底剩下的錢，也可以再放進存款喔！`;
-  choicesEl.innerHTML = "";
-  noteEl.textContent = saved >= 1000 ? "你成功為目標存下一筆錢！" : "試著重新玩一次，看看不同選擇會帶來什麼變化。";
-  const b = document.createElement("button");
-  b.className = "restart";
-  b.textContent = "再玩一次";
-  b.onclick = () => {
-    money = 9000; saved = 0; turn = 0;
-    moneyEl.textContent = "9,000"; savedEl.textContent = "0";
-    showEvent();
-  };
-  choicesEl.appendChild(b);
-}
-showEvent();
-</script>
-</body>
-</html>
+let cash=9000,fund=0,turn=0;const $=s=>document.querySelector(s);const moneyEl=$('#money'),savedEl=$('#saved'),goalNum=$('#goalnum'),bar=$('#bar'),scene=$('#scene'),steps=$('#steps');
+function fmt(n){return n.toLocaleString('en-US')}
+function drawSteps(){steps.innerHTML=events.map((e,i)=>`<div class="step ${i<turn?'done':i===turn?'active':''}"><span class="dot">${i<turn?'✓':String(i+1).padStart(2,'0')}</span><span>${e.icon} 第${i+1}關</span></div>`).join('')}
+function update(){moneyEl.innerHTML=`${fmt(cash)} <em>元</em>`;savedEl.innerHTML=`${fmt(fund)} <em>元</em>`;goalNum.textContent=fmt(fund);bar.style.width=Math.min(100,fund/5000*100)+'%'}
+function show(){update();drawSteps();if(turn>=events.length)return finish();let e=events[turn];scene.innerHTML=`<div class="scene-meta"><span>${e.icon} · MONTHLY MOMENT</span><span>關卡 ${String(turn+1).padStart(2,'0')} / 10</span></div><h2>${e.title}</h2><p class="desc">${e.desc}</p><div class="choices">${e.choices.map((c,i)=>`<button class="choice" data-i="${i}"><span>${c[0]}</span><small class="${c[2]?'good':c[1]?'cost':''}">${c[2]?'↗ 存入 '+fmt(c[2])+' 元':c[1]?'↘ 支出 '+fmt(c[1])+' 元':'— 不花錢'}</small></button>`).join('')}</div><div class="result hidden" id="result"></div><div class="footer"><span>想想這筆錢和你的目標，哪個更重要？</span><button class="btn hidden" id="next">下一關 →</button></div>`;scene.querySelectorAll('.choice').forEach(b=>b.onclick=()=>choose(+b.dataset.i))}
+function choose(i){const e=events[turn],c=e.choices[i];cash-=c[1];fund+=c[2];scene.querySelectorAll('.choice').forEach(b=>b.disabled=true);$('.result').textContent=c[3];$('.result').classList.remove('hidden');$('#next').classList.remove('hidden');$('#next').onclick=()=>{turn++;show()};update()}
+function finish(){const won=fund>=5000;scene.innerHTML=`<div class="end"><div class="eyebrow">MONTH COMPLETE</div><div class="emoji">${won?'🎉':'🎧'}</div><h2>${won?'門票基金達標！':'這個月的挑戰完成！'}</h2><p>${won?'你存下了 '+fmt(fund)+' 元，達成 5,000 元目標！下一場演出，離你更近了。':'你存下了 '+fmt(fund)+' 元。離門票目標還差 '+fmt(Math.max(0,5000-fund))+' 元；看見自己的花費模式，就是下一次做得更好的開始。'}<br>本月還有 <b>${fmt(cash)} 元</b> 可自由運用。</p><button class="btn" id="restart">再玩一次 ↻</button></div>`;drawSteps();update();$('#restart').onclick=()=>{cash=9000;fund=0;turn=0;show()}}
+show();
+</script></body></html>
