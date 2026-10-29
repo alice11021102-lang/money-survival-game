@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>月底生存大作戰</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px; font-family: system-ui, sans-serif;
+    color: #303047; background: linear-gradient(135deg, #fff0f3, #e9f8f5);
+  }
+  main {
+    max-width: 620px; margin: 30px auto; padding: 28px;
+    background: white; border-radius: 24px; box-shadow: 0 12px 36px #55446620;
+  }
+  .tag { color: #a04d78; font-weight: 700; }
+  h1 { margin: 8px 0; font-size: 30px; }
+  .subtitle { color: #777; line-height: 1.7; }
+  .stats { display: flex; gap: 12px; margin: 22px 0; }
+  .stat { flex: 1; padding: 14px; border-radius: 16px; background: #fff3f6; }
+  .stat small { display: block; color: #777; }
+  .stat strong { font-size: 21px; }
+  .bar { height: 12px; background: #eee; border-radius: 99px; overflow: hidden; }
+  #progress { height: 100%; width: 0; background: #e879a5; transition: .3s; }
+  #scene { margin-top: 24px; padding: 20px; border-radius: 18px; background: #f5f3ff; }
+  #emoji { font-size: 38px; }
+  #question { font-size: 21px; font-weight: 700; margin: 8px 0; }
+  #detail { color: #666; line-height: 1.6; }
+  button {
+    width: 100%; margin-top: 12px; padding: 15px; border: 0;
+    border-radius: 14px; background: #6554a4; color: white;
+    font-size: 16px; font-weight: 700; cursor: pointer;
+  }
+  button:hover { background: #51418e; }
+  #note { min-height: 28px; margin-top: 14px; color: #6554a4; font-weight: 600; }
+  .restart { background: #e879a5; }
+</style>
+</head>
+<body>
+<main>
+  <div class="tag">🎮 大學生理財闖關</div>
+  <h1>月底生存大作戰</h1>
+  <p class="subtitle">這個月有 18,000 元生活費，先扣掉基本開銷後，看看你能不能存下日本旅行基金！</p>
+
+  <div class="stats">
+    <div class="stat"><small>可自由運用</small><strong id="money">9,000</strong> 元</div>
+    <div class="stat"><small>旅行基金</small><strong id="saved">0</strong> 元</div>
+  </div>
+  <div class="bar"><div id="progress"></div></div>
+
+  <section id="scene">
+    <div id="emoji">🧋</div>
+    <div id="question"></div>
+    <div id="detail"></div>
+    <div id="choices"></div>
+    <div id="note"></div>
+  </section>
+</main>
+
+<script>
+const events = [
+  { emoji:"🧋", q:"朋友約你喝飲料聊天！", d:"今天心情有點累，朋友問你要不要買一杯 85 元飲料。", options:[
+    ["買！今天值得犒賞自己",85], ["帶自己的水，省下來",0]
+  ]},
+  { emoji:"👕", q:"看到一件超喜歡的衣服！", d:"網路商店正在特價，這件衣服要 1,200 元。", options:[
+    ["立刻下單",1200], ["先放進收藏，想一天再決定",0]
+  ]},
+  { emoji:"🍜", q:"晚餐要怎麼解決？", d:"你可以吃平價餐點，也可以和朋友去吃火鍋。", options:[
+    ["平價晚餐，花 100 元",100], ["火鍋聚餐，花 450 元",450]
+  ]},
+  { emoji:"🎟️", q:"喜歡的歌手要開演唱會了！", d:"門票基金還差一點，你要怎麼安排這筆錢？", options:[
+    ["先存 1,000 元進旅行基金",0,1000], ["買周邊商品，花 800 元",800]
+  ]}
+];
+
+let money = 9000, saved = 0, turn = 0;
+const moneyEl = document.querySelector("#money");
+const savedEl = document.querySelector("#saved");
+const questionEl = document.querySelector("#question");
+const detailEl = document.querySelector("#detail");
+const choicesEl = document.querySelector("#choices");
+const noteEl = document.querySelector("#note");
+
+function showEvent() {
+  if (turn >= events.length) return finish();
+  const e = events[turn];
+  document.querySelector("#emoji").textContent = e.emoji;
+  questionEl.textContent = `第 ${turn + 1} 關｜${e.q}`;
+  detailEl.textContent = e.d;
+  noteEl.textContent = "";
+  document.querySelector("#progress").style.width = `${turn / events.length * 100}%`;
+  choicesEl.innerHTML = "";
+  e.options.forEach(([label, cost, save]) => {
+    const b = document.createElement("button");
+    b.textContent = label;
+    b.onclick = () => {
+      money -= cost;
+      saved += save || 0;
+      moneyEl.textContent = money.toLocaleString();
+      savedEl.textContent = saved.toLocaleString();
+      noteEl.textContent = cost ? `這次花了 ${cost} 元。每個選擇都會影響月底剩下的錢！` : "做出選擇了！繼續看看下一關～";
+      turn++;
+      setTimeout(showEvent, 900);
+    };
+    choicesEl.appendChild(b);
+  });
+}
+
+function finish() {
+  document.querySelector("#progress").style.width = "100%";
+  questionEl.textContent = saved >= 1000 ? "任務完成！🎉" : "挑戰結束！✨";
+  detailEl.textContent = `你最後有 ${money.toLocaleString()} 元可運用，另外存下 ${saved.toLocaleString()} 元旅行基金。月底剩下的錢，也可以再放進存款喔！`;
+  choicesEl.innerHTML = "";
+  noteEl.textContent = saved >= 1000 ? "你成功為目標存下一筆錢！" : "試著重新玩一次，看看不同選擇會帶來什麼變化。";
+  const b = document.createElement("button");
+  b.className = "restart";
+  b.textContent = "再玩一次";
+  b.onclick = () => {
+    money = 9000; saved = 0; turn = 0;
+    moneyEl.textContent = "9,000"; savedEl.textContent = "0";
+    showEvent();
+  };
+  choicesEl.appendChild(b);
+}
+showEvent();
+</script>
+</body>
+</html>
